@@ -37,3 +37,14 @@ Node.jsとnpmは[mise](https://mise.jdx.dev/)で管理する。
 ## 開発と更新
 
 テスト：`mise exec -- npm test` を実行する。Node.jsとnpmのバージョンは`mise.toml`で更新する。
+
+DependabotがnpmとGitHub Actionsの更新を週1回確認し、通常更新は公開から3日待ってPRを作成する。CIと変更内容を確認して手動でマージする。Dependabot Alertsとsecurity updatesはリポジトリ設定で有効にする。
+
+PRではテストを実行し、mainへのpushではテスト成功後に`clasp push --force`でGASへ反映する。GitHub ActionsのSecretsに次の値を登録する。
+
+| Secret | 内容 |
+| --- | --- |
+| `CLASPRC_JSON` | `clasp login`で作成される`~/.clasprc.json` |
+| `CLASP_JSON` | リポジトリ直下の`.clasp.json` |
+
+Actionsからmainを指定して手動実行することでも再反映できる。
