@@ -1,0 +1,10 @@
+{
+  "name": "sakura-news-notifier",
+  "private": true,
+  "scripts": {
+    "test": "node test/main.test.js"
+  },
+  "devDependencies": {
+    "@google/clasp": "3.4.1"
+  }
+}
